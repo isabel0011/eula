@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Team</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial;
+      text-align: center;
+      margin: 0;
+      padding: 80px 20px;
+      background: linear-gradient(180deg, #e8f5e9 0%, #a5d6a7 50%, #81c784 100%);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    h1 { 
+      color: #1b5e20; 
+      font-size: 40px; 
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease;
+    }
+    
+    p { font-size: 20px; color: #2e7d32; margin-bottom: 40px; }
+
+    .team { 
+      display: flex; 
+      justify-content: center; 
+      gap: 60px; 
+      margin-top: 50px; 
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card { 
+      background: rgba(255,255,255,0.95); 
+      padding: 30px; 
+      border-radius: 25px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+      width: 260px;
+      transition: all 0.4s;
+      animation: popIn 1s ease;
+    }
+    .card:hover { 
+      transform: translateY(-15px) scale(1.05); 
+    }
+
+    .card img { 
+      width: 170px; 
+      height: 170px; 
+      border-radius: 50%; 
+      object-fit: cover; 
+      border: 5px solid #66bb6a; 
+    }
+
+    .name { 
+      font-size: 24px; 
+      font-weight: bold; 
+      margin-top: 18px; 
+      color: #1b5e20;
+    }
+
+    /* Falling elements */
+    .float {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg) translateX(-50px); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } 
+      to { opacity: 1; } }
+
+
+    @keyframes popIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>EULA Accepted ✅</h1>
+  <p>Welcome! This app was built by:</p>
+  
+  <div class="team">
+    <div class="card">
+      <img src="meee.PNG" alt="Your photo">
+      <div class="name" id="userName">Isabel O. Jungoy</div>
+    </div>
+    
+    <div class="card">
+      <img src="kienhh.PNG" alt="Teammate photo">
+      <div class="name">Kienh Vinh S. Nguyen</div>
+    </div>
+  </div>
+
+
+  <script>
+    alert('JS is working');
+    // Show user name
+    const name = localStorage.getItem('userName');
+    if (name) document.getElementById('userName').textContent = name;
+
+    // Mix of leaves + flowers + sparkles
+    const emojis = ['🍃', '🌸', '✨', '🌿'];
+    
+    function createFloat() {
+      const el = document.createElement('div');
+      el.classList.add('float');
+      el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.animationDuration = Math.random() * 5 + 5 + 's';
+      el.style.fontSize = Math.random() * 12 + 20 + 'px';
+      
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 10000);
+    }
+    
+    setInterval(createFloat, 300); // Lower = more particles
+    createFloat();
+  </script>
+</body>
+</html>
